@@ -8,12 +8,13 @@
         <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.1.5/dist/mindar-image.prod.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.1.5/dist/mindar-image-aframe.prod.js"></script>
+        <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
         <link rel="stylesheet" href="style.css">
     </head>
 
     <body>
         <a-scene
-        mindar-image="imageTargetSrc: ./assets/targets (3).mind" 
+        mindar-image="imageTargetSrc: ./assets/targets (4).mind" 
         color-space="sRGB"
         renderer="colorManagement: true, physicallyCorrectLights"
         vr-mode-ui="enabled: false"
@@ -21,26 +22,32 @@
         >
 
             <a-assets>
-                <img id="card" src="./assets/pixta_42927884_M.jpg">
+                <img id="card" src="./assets/marker.jpg">
                 <a-asset-item
                     id="animated-asset"
                     src="./assets/asset.gltf"
                 ></a-asset-item>
+                <a-asset-item
+                    id="animated-asset-2"
+                    src="./assets/asset2.gltf"
+                ></a-asset-item>
             </a-assets>
 
-            <a-entity
-                gltf-model="#animated-asset" scale="0.01 0.01 0.01"
-            ></a-entity>
-          
+            <a-entity mindar-image-target="targetIndex: 0">
+                <a-gltf-model
+                rotation="90 0 0"
+                position="0 0 0"
+                scale="0.05 0.05 0.05"
+                src="#animated-asset"
+                animation-mixer
+                ></a-gltf-model>
+            </a-entity>
+
             <a-camera 
             position="0 0 0" 
             look-controls="enabled: false; smoothingFactor: 0.1;"
             ></a-camera>
         </a-scene>
-
-        <div class="button">
-            <button class="btn" data-action="change"></button>
-        </div>
         <!--
         <div class="video_wrapper">
             <video autoplay muted loop id="header">
